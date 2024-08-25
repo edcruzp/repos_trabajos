@@ -1,0 +1,29 @@
+get -- http://localhost:8080/api/alumnos/getAlumnos
+get -- http://localhost:8080/api/materias/getMaterias
+
+Post -- http://localhost:8080/api/alumnos/save
+body
+{
+  "nombre": "Usuario1",
+  "materia": [
+        {
+            "nombre": "Matemáticas"
+        },
+        {
+            "nombre": "Historia"
+        }
+    ],
+  "apellidoPaterno": "israel",
+  "apellidoMaterno": "nogales",
+  "email": "miri.perez@example.com",
+  "numeroMovil": 4512784512
+}
+
+delete -- http://localhost:8080/api/alumnos/delete/1
+
+PUT -- http://localhost:8080/api/alumnos/update/email/{id}
+body
+{
+  "email": "eduardod21@gmail.com"
+}
+
