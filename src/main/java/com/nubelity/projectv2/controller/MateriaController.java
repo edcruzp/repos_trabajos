@@ -18,7 +18,7 @@ import com.nubelity.projectv2.service.MateriaService;
 @RestController
 @Validated
 @RequestMapping("/api/materias")
-public class MateriaControllerCRUD {
+public class MateriaController {
 
 	@Autowired
 	private MateriaService materiaservice;

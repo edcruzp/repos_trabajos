@@ -19,7 +19,7 @@ import com.nubelity.projectv2.service.AlumnoService;
 @RestController
 @Validated
 @RequestMapping("/api/alumnos")
-public class AlumnoControllerCRUD {
+public class AlumnoController {
 
 	@Autowired
 	private AlumnoService alumnoService;
