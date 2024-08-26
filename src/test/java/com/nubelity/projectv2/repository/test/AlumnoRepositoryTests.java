@@ -1,7 +1,10 @@
 package com.nubelity.projectv2.repository.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -82,6 +85,43 @@ public class AlumnoRepositoryTests {
 	        // Verifica el resultado esperado
 	        assertEquals("Eduardo", alumnoActualizado.getNombre());
 	        verify(alumnoRepository).save(alumnoExistente);
+	    }
+	 
+	 
+	 @Test
+	    public void testEliminarAlumnos_ExistenAlumnos() {
+	        // Configura el comportamiento del mock
+	        Long id = 1L;
+	        when(alumnoRepository.existsById(id)).thenReturn(true);
+
+	        // Llama al método que se está probando
+	        boolean resultado = alumnoService.eliminarAlumnos(id);
+
+	        // Verifica el resultado
+	        assertTrue(resultado);
+
+	        // Verifica las interacciones con el mock
+	        verify(alumnoRepository).existsById(id);
+	        verify(alumnoRepository).deleteById(id);
+	    }
+	 
+	 
+	 
+	 @Test
+	    public void testEliminarAlumnos_NoExistenAlumnos() {
+	        // Configura el comportamiento del mock
+	        Long id = 2L;
+	        when(alumnoRepository.existsById(id)).thenReturn(false);
+
+	        // Llama al método que se está probando
+	        boolean resultado = alumnoService.eliminarAlumnos(id);
+
+	        // Verifica el resultado
+	        assertFalse(resultado);
+
+	        // Verifica que deleteById no se ha llamado
+	        verify(alumnoRepository).existsById(id);
+	        verify(alumnoRepository, never()).deleteById(id);
 	    }
 
 
